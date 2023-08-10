@@ -1,4 +1,4 @@
-const SERVER = "http://127.0.0.1:5000";
+const SERVER = "https://all-news-api.onrender.com";
 
 export const getClusters = async () => {
   try {
