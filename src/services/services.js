@@ -21,3 +21,14 @@ export const getWebsitesStats = async () => {
     throw error;
   }
 };
+
+export const getDBStats = async () => {
+  try {
+    const response = await fetch(SERVER + "/get_db_stats");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching db statistics data:", error);
+    throw error;
+  }
+};

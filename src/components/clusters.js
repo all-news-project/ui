@@ -2,8 +2,6 @@ import React from "react";
 import Graph from "react-graph-vis";
 
 const Clusters = ({ nodes, edges }) => {
-  // console.log("nodes: ", nodes);
-  // console.log("edges: ", edges);
   const graph = {
     nodes: nodes,
     edges: edges,

@@ -2,8 +2,6 @@ import React from "react";
 import { XYPlot, XAxis, YAxis, VerticalRectSeries } from "react-vis";
 
 const Websites = ({ labels, values }) => {
-  console.log(labels);
-  console.log(values);
   const columnWidth = 0.6;
 
   const transformDataToRectSeries = (raw) => {

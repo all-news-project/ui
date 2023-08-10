@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useMemo } from "react";
 import "./App.css";
 import Clusters from "./components/clusters";
-import ClusterDetails from "./components/cluster_details"
+import ClusterDetails from "./components/cluster_details";
 import DBStats from "./components/db_stats";
 import Websites from "./components/websites";
 import Header from "./components/header";
-import { getClusters, getWebsitesStats } from "./services/services";
+import { getClusters, getWebsitesStats, getDBStats } from "./services/services";
 
 function App() {
   // Cluster Data
@@ -48,6 +48,26 @@ function App() {
     fetchData();
   }, [getWebsitesStatsRequest]);
 
+  // DB statistic data
+  const getDBStatsRequest = useMemo(
+    () => async () => {
+      const dbData = await getDBStats();
+      return dbData;
+    },
+    []
+  );
+
+  const [dbData, setDbData] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getDBStatsRequest();
+      setDbData({ data });
+    };
+
+    fetchData();
+  }, [getDBStatsRequest]);
+
   // Render
   return (
     <div className="App">
@@ -60,7 +80,7 @@ function App() {
         <div className="dash_component">
           <div className="details_component">
             <ClusterDetails />
-            <DBStats />
+            <DBStats data={dbData.data ? dbData.data.data : {}} />
           </div>
           <Websites
             labels={websitesData.data ? websitesData.data.labels : []}
