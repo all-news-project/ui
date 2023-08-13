@@ -22,11 +22,15 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getClusterRequest();
+      console.warn(data);
       setGraphData({ data });
     };
 
     fetchData();
   }, [getClusterRequest]);
+
+  // Current cluster index
+  const [currentClusterIndex, setCurrentClusterIndex] = useState(0);
 
   // Websites statistic data
   const getWebsitesStatsRequest = useMemo(
@@ -76,10 +80,17 @@ function App() {
         <Clusters
           nodes={graphData.data ? graphData.data.nodes : []}
           edges={graphData.data ? graphData.data.edges : []}
+          setCurrentClusterIndex={setCurrentClusterIndex}
         />
         <div className="dash_component">
           <div className="details_component">
-            <ClusterDetails />
+            <ClusterDetails
+              cluster={
+                graphData.data
+                  ? graphData.data.clusters[currentClusterIndex]
+                  : {}
+              }
+            />
             <DBStats data={dbData.data ? dbData.data.data : {}} />
           </div>
           <Websites

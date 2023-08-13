@@ -1,7 +1,7 @@
 import React from "react";
 import Graph from "react-graph-vis";
 
-const Clusters = ({ nodes, edges }) => {
+const Clusters = ({ nodes, edges, setCurrentClusterIndex }) => {
   const graph = {
     nodes: nodes,
     edges: edges,
@@ -35,6 +35,7 @@ const Clusters = ({ nodes, edges }) => {
         getNetwork={(network) => {
           network.on("click", function(properties) {
             var ids = properties.nodes;
+            setCurrentClusterIndex(ids);
             console.log(ids);
           });
         }}
