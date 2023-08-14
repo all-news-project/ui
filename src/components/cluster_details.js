@@ -7,7 +7,10 @@ const ClusterDetails = ({ cluster }) => {
   if (cluster && cluster.articles) {
     articles_list = cluster.articles.map((article) => (
       <li className="article_details">
-        <h4>{article.title ? article.title : "No title"}</h4>
+        <div>
+          <h4>{article.title ? article.title : "No title"}</h4>
+          <p>{article.publishing_time ? article.publishing_time : ""}</p>
+        </div>
         <a href={article.url} target="_blank">
           <img
             src={article.icon_url ? article.icon_url : DEFAULT_ICON_URL}

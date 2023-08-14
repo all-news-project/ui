@@ -36,7 +36,6 @@ const Clusters = ({ nodes, edges, setCurrentClusterIndex }) => {
           network.on("click", function(properties) {
             var ids = properties.nodes;
             setCurrentClusterIndex(ids);
-            console.log(ids);
           });
         }}
       />
